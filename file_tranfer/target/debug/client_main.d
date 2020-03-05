@@ -1,0 +1,1 @@
+/home/denard/Documents/coding/git/FTP/file_tranfer/target/debug/client_main: /home/denard/Documents/coding/git/FTP/file_tranfer/src/bin/client_main.rs /home/denard/Documents/coding/git/FTP/file_tranfer/src/ftp.rs /home/denard/Documents/coding/git/FTP/file_tranfer/src/lib.rs

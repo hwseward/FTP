@@ -2,13 +2,14 @@ use std::net::{TcpListener, TcpStream};
 use std::path::Path;
 use std::fs::File;
 use std::io::{Write, Read};
+use std::io::prelude::*;
 
 pub enum FTP {
 
     
-    // Normal(String::From("127.0.0.1:8080"), String::From("/home/user/file"))
+    // Normal(String::From("127.0.0.1:8080"), File::create("/home/user/file"))
     Normal(String, File),
-    // Secure(String::From("127.0.0.1:8080"), String::From("/home/user/file"))
+    // Secure(String::From("127.0.0.1:8080"), File::create("/home/user/file"))
     Secure(String, File),
 
 }
@@ -22,7 +23,7 @@ impl FTP {
     ///
     /// Example
     /// ```
-    /// let ftp = FTP::new("127.0.0.1:8080", "");
+    /// let ftp = FTP::new("127.0.0.1:8080", File::create("/home/user/file.txt"));
     /// ```
 
     pub fn new(ip_addr: &str, file: File) -> FTP {
@@ -40,7 +41,7 @@ impl FTP {
     ///
     /// Example
     /// ```
-    /// let ftp = FTP::new("127.0.0.1:8080", "/home/user/file.txt");
+    /// let ftp = FTP::new("127.0.0.1:8080", File::create("/home/user/file.txt"));
     /// ftp.send();
     /// ```
 
@@ -58,14 +59,22 @@ impl FTP {
 
     }
 
-    pub fn recv(self) -> String {
+    /// Receives file and writes it to the desiered opened file
+    /// 
+    /// Parameter self
+    ///
+    /// Example
+    /// ```
+    /// let ftp = FTP::new("127.0.0.1:8080", File::create("/home/user/file.txt"));
+    /// ftp.send();
+    /// ```
 
-        //Creates a Vector to hold the files
-        let mut files = Vec::new();
+    pub fn recv(self) {
+
         //Creates buffer to read stream
         let mut buffer = Vec::new();
         // Gets ip from self
-        let (ip, _) = self.get_ip_file();
+        let (ip, mut file) = self.get_ip_file();
         // Starts Listening from incoming clients
         let listener = TcpListener::bind(ip).unwrap();
         // handles each client
@@ -73,8 +82,8 @@ impl FTP {
 
             // sets num to the size of the file
             let num = stream.unwrap().read_to_end(&mut buffer).unwrap();
-            let test = String::from_utf8(buffer[..num].to_vec()).unwrap()
-            test
+            // Writes file data to opened file
+            file.write_all(&buffer[..num]).unwrap();
         }
         
 
