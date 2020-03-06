@@ -1,7 +1,7 @@
 [package]
 name = "file_transfer"
 version = "0.1.0"
-authors = ["denard"]
+authors = ["hwseward"]
 edition = "2018"
 license = "MIT"
 description = "Enum to transfer files"

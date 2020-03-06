@@ -14,7 +14,7 @@
 edition = "2018"
 name = "file_transfer"
 version = "0.1.0"
-authors = ["denard"]
+authors = ["hwseward"]
 description = "Enum to transfer files"
 homepage = "https://github.com/hwseward/FTP.git"
 readme = "README.md"
