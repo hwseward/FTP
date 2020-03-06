@@ -3,6 +3,13 @@ name = "file_transfer"
 version = "0.1.0"
 authors = ["denard"]
 edition = "2018"
+license = "MIT"
+description = "Enum to transfer files"
+readme = "README.md"
+homepage = "https://github.com/hwseward/FTP.git"
+repository = "https://github.com/hwseward/FTP.git"
+keywords = ["ftp", "File", "Transfer"]
+categories = ["network-programming"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
